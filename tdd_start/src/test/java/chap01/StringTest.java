@@ -9,7 +9,7 @@ public class StringTest {
     @Test
     void substring(){
         String str = "abcde";
-        assertEquals("cd", str.substring(2, 5));
+        assertEquals("cd", str.substring(2, 4));
 
 
     }
