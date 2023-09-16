@@ -25,4 +25,7 @@ public class UserRegisterTest {
             userRegister.register("id", "pw", "email");
         });
     }
+    @DisplayName("동일 ID를 가진 회원 존재하면 가입 실패")
+    @Test
+    void duplicateId(){}
 }
