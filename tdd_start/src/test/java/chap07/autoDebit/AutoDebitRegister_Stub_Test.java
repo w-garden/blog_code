@@ -1,11 +1,11 @@
 package chap07.autoDebit;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static chap07.autoDebit.CardValidity.INVALID;
-import static chap07.autoDebit.CardValidity.VALID;
+import static chap07.autoDebit.CardValidity.THEFT;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AutoDebitRegister_Stub_Test {
     private AutoDebitRegister register;
@@ -23,7 +23,16 @@ public class AutoDebitRegister_Stub_Test {
         stubValidator.setInvalidNo("111122223333");
         AutoDebitReq req = new AutoDebitReq("user1","111122223333");
         RegisterResult result = register.register(req);
-        Assertions.assertEquals(INVALID, result.getValidity());
+        assertEquals(INVALID, result.getValidity());
+    }
+
+    @Test
+    void theftCard(){
+        stubValidator.setTheftNo("1234567890123456");
+
+        AutoDebitReq req = new AutoDebitReq("user1","1234567890123456");
+        RegisterResult result = this.register.register(req);
+        assertEquals(THEFT, result.getValidity());
     }
 }
 //https://github.com/madvirus/tddb/blob/master/chap07/src/test/java/autodebit/StubAutoDebitInfoRepository.java
