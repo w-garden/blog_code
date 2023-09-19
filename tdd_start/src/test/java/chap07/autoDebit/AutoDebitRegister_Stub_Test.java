@@ -35,4 +35,3 @@ public class AutoDebitRegister_Stub_Test {
         assertEquals(THEFT, result.getValidity());
     }
 }
-//https://github.com/madvirus/tddb/blob/master/chap07/src/test/java/autodebit/StubAutoDebitInfoRepository.java
