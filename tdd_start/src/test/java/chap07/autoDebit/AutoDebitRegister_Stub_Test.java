@@ -19,7 +19,7 @@ public class AutoDebitRegister_Stub_Test {
         register = new AutoDebitRegister(stubValidator, stubRepository);
     }
     @Test
-    void invalidCard(){
+    void invalidCardNumber(){
         stubValidator.setInvalidNo("111122223333");
         AutoDebitReq req = new AutoDebitReq("user1","111122223333");
         RegisterResult result = register.register(req);
