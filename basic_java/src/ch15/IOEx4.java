@@ -1,11 +1,12 @@
-package input_output;
+package ch15;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class IOEx3 {
+//IOEx3에 대한 수정
+public class IOEx4 {
     public static void main(String[] args) {
         byte[] inSrc = {0,1,2,3,4,5,6,7,8,9};
         byte[] outSrc = null;
@@ -19,9 +20,8 @@ public class IOEx3 {
         try {
 
             while (input.available() > 0) {
-                input.read(temp);
-                output.write(temp);
-//                System.out.println("temp :" + Arrays.toString(temp));
+                int len = input.read(temp);
+                output.write(temp,0,len);
 
                 outSrc = output.toByteArray();
                 printArrays(temp, outSrc);

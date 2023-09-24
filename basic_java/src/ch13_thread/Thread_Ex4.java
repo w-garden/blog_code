@@ -1,4 +1,4 @@
-package thread;
+package ch13_thread;
 
 public class Thread_Ex4 extends Thread {
     @Override

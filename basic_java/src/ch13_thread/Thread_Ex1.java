@@ -1,4 +1,4 @@
-package thread;
+package ch13_thread;
 
 class Thread_Ex1 extends Thread {
 
