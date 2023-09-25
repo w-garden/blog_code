@@ -16,6 +16,8 @@ public class AutoDebitRegisterTest {
         AutoDebitInfoRepository repository = new JpaAutoDebitInfoRepository();
         register = new AutoDebitRegister(validator, repository);
     }
+
+    //Http통신이 필요한 테스트
     @Test
     void validCard(){
         //업체에서 받은 테스트용 유효한 카드번호 사용
@@ -24,6 +26,8 @@ public class AutoDebitRegisterTest {
         assertEquals(VALID, result.getValidity());
 
     }
+
+    //Http통신이 필요한 테스트
     @Test
     void theftCard(){
         // 업체에서 받은 도난 테스트용 카드번호 사용

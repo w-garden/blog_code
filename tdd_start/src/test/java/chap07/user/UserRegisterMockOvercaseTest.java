@@ -16,13 +16,16 @@ public class UserRegisterMockOvercaseTest  {
 
 
     private UserRepository fakeRepository = new MemoryUserRepository();
+
+    /*
     @BeforeEach
     void setUp(){
-        userRegister= new UserRegister(mockPasswordChecker,fakeRepository,mockEmailNotifier);
+        //userRegister= new UserRegister(mockPasswordChecker,fakeRepository,mockEmailNotifier);
         userRegister= new UserRegister(mockPasswordChecker,mockRepository,mockEmailNotifier);
-    }
+    }*/
     @Test
     void noDupId_RegisterSuccess(){
+        userRegister= new UserRegister(mockPasswordChecker,mockRepository,mockEmailNotifier);
         userRegister.register("id", "pw", "email");
 
         ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
@@ -35,6 +38,7 @@ public class UserRegisterMockOvercaseTest  {
     }
     @Test
     void 같은_ID가_없으면_가입(){
+        userRegister= new UserRegister(mockPasswordChecker,fakeRepository,mockEmailNotifier);
         userRegister.register("id", "pw", "email");
         User savedUser = fakeRepository.findById("id");
         assertEquals("id", savedUser.getId());
