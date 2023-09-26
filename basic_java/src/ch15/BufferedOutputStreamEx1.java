@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 public class BufferedOutputStreamEx1 {
     public static void main(String[] args) {
         try {
