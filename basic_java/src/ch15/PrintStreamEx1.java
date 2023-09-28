@@ -16,7 +16,7 @@ public class PrintStreamEx1 {
         System.out.printf("123456789012345678901234567890%n");
         System.out.printf("%s%-5s%5s%n", "123", "123", "123");
         System.out.println("");
-        System.out.printf("%-8.lf%8.lf %e%n", f, f, f);
+        System.out.printf("%-8.1f%8.1f %e%n", f, f, f);
         System.out.println("");
         System.out.printf("오늘은 %tY년 %tm월 %td일 입니다. %n", d, d, d);
         System.out.printf("지금은 %tH시 5tM분 %tS초 입니다. %n", d, d, d);
