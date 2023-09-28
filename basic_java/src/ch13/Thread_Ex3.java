@@ -1,4 +1,4 @@
-package ch13_thread;
+package ch13;
 
 class Thread_Ex3 extends Thread {
     public void run() {

@@ -1,4 +1,4 @@
-package ch13_thread;
+package ch13;
 
 import javax.swing.*;
 

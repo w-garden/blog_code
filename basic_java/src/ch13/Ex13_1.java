@@ -1,4 +1,4 @@
-package ch13_thread;
+package ch13;
 
 /**
  * thread 구현과 실행하기

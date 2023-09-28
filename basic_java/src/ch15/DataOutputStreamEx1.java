@@ -18,16 +18,5 @@ public class DataOutputStreamEx1 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        FileInputStream fis = new FileInputStream("sample.dat");
-        DataInputStream dis = new DataInputStream(fis);
-
-        try{
-            System.out.println(dis.readInt());
-            System.out.println(dis.readFloat());
-            System.out.println(dis.readBoolean());
-        }catch (IOException e){
-            e.printStackTrace();
-        }
     }
 }

@@ -1,4 +1,4 @@
-package ch13_thread;
+package ch13;
 
 class Thread_Ex2 implements Runnable {
     @Override

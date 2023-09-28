@@ -1,4 +1,4 @@
-package ch13_thread;
+package ch13;
 
 public class Ex13_6 {
     public static void main(String[] args) {

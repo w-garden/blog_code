@@ -1,4 +1,4 @@
-package ch13_thread;
+package ch13;
 
 /**
  * OS 의 프로세스 스케줄러의 영향을 받기 때문에 실행할 때마다 다른 결과를 얻을 수있음
