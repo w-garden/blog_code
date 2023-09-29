@@ -28,7 +28,7 @@ public class PipedReaderWriter {
                 int data = 0;
                 while ((data = input.read()) != -1)
                     sw.write(data);
-                System.out.println(getName() + " received " + sw.toString());
+                System.out.println(getName() + " received : " + sw.toString());
             } catch (IOException e) {}
         }
 
