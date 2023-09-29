@@ -12,7 +12,7 @@ public class FileEx6 {
         if (args.length != 2) {
             System.out.println("USAGE : java FileEx6 DIRECTORY KEYWORD");
             System.exit(0);
-
+        }
             File dir = new File(args[0]);
             String keyword = args[1];
 
@@ -22,12 +22,12 @@ public class FileEx6 {
             }
             try {
                 findInFiles(dir, keyword);
+                System.out.println("dd");
             } catch (IOException e) {
                 e.printStackTrace();
             }
             System.out.println();
             System.out.println("총 " + found + "개의 라인에서 '" + keyword + "'을/를 발견 하였습니다. ");
-        }
     }
 
     private static void findInFiles(File dir, String keyword) throws IOException {
