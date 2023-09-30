@@ -22,7 +22,6 @@ public class FileEx6 {
             }
             try {
                 findInFiles(dir, keyword);
-                System.out.println("dd");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -39,9 +38,9 @@ public class FileEx6 {
             } else {
                 String filename = files[i].getName();
                 String extension = filename.substring(filename.lastIndexOf(".") + 1);
-                extension = "," + extension + ",";
+                extension = "*" + extension + "*";
 
-                if (",java,txt,bak,".indexOf(extension) == -1) continue;
+                if ("*java*txt*bak*".indexOf(extension) == -1) continue;
                 filename = dir.getAbsolutePath() + File.separator + filename;
 
                 FileReader fr = new FileReader(files[i]);
