@@ -1,11 +1,12 @@
 package ch14;
 
+import java.util.function.Supplier;
+
 @FunctionalInterface
 interface MyFunction3 {
     void myMethod(String str);
 
 }
-
 class Outer {
     int val = 10;
 
