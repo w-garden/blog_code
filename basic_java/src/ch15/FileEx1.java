@@ -2,6 +2,9 @@ package ch15;
 
 import java.io.File;
 
+/**
+ *  주로 자료실 예제 쓰임
+ */
 public class FileEx1 {
     public static void main(String[] args) {
         //경로를 세팅
