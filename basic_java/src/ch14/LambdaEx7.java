@@ -15,7 +15,7 @@ public class LambdaEx7 {
         System.out.println(h2.apply(2));
 
         Function<String, String> f2 = x -> x;
-        System.out.println(f2.apply("AAA"));
+        System.out.println(f2.apply("BBB"));
 
         Predicate<Integer> p = i -> i < 100;
         Predicate<Integer> q = i -> i < 200;
