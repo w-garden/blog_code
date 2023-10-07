@@ -12,6 +12,7 @@ public class StreamEx1 {
                 new Student("박자바", 2, 100),
                 new Student("소자바", 5, 500),
                 new Student("최자바", 1, 400),
+                new Student("오자바", 7, 400),
                 new Student("최자바", 2, 900)
         );
 
