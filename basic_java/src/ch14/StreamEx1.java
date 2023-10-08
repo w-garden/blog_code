@@ -1,7 +1,9 @@
 
 package ch14;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamEx1 {
@@ -20,6 +22,9 @@ public class StreamEx1 {
         studentStream.sorted(Comparator.comparing(Student::getBan)
                         .thenComparing(Comparator.naturalOrder()))
                 .forEach(System.out::println);
+
+
+
     }
 }
 
