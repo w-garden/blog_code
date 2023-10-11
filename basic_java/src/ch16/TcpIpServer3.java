@@ -23,15 +23,14 @@ public class TcpIpServer3 {
                 System.out.println(getTime() + "연결 요청을 기다립니다.");
                 //요청 대기시간을 5초로한다.
                 //5초동안 접속 요청이 없으면 SocketTimeoutException이 발생한다.
-                serverSocket.setSoTimeout(5 * 1000);
+                serverSocket.setSoTimeout(10 * 1000);
                 Socket socket = serverSocket.accept();
                 System.out.println(getTime() + socket.getInetAddress() + "로부터 연결 요청이 들어왔습니다.");
 
                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
                 dos.writeUTF("[NOTICE] Test Message3 from Server");
-                dos.writeUTF("Hello everyone!");
 
-                System.out.println(getTime() + "데이터 전송완료!!");
+                System.out.println(getTime() + "데이터 전송완료!!\n\n");
 
                 dos.close();
                 socket.close();
