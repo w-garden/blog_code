@@ -18,7 +18,7 @@ public class TcpIpClient {
             DataInputStream dis = new DataInputStream(socket.getInputStream());
 
             //소켓으로 부터 받은 데이터를 출력한다.
-            System.out.println("서버로부터 받은 메시지 :" + dis.readUTF());
+            System.out.println("서버로부터 받은 메시지 : " + dis.readUTF());
             System.out.println("연결을 종료합니다.");
 
             dis.close();

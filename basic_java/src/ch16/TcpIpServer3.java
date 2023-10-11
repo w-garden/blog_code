@@ -2,17 +2,16 @@ package ch16;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.net.SocketTimeoutException;
 
-public class TcpIpServer {
+import static ch16.TcpIpServer.getTime;
+
+public class TcpIpServer3 {
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
         try {
-            // 서버소켓을 생성하여 7777번 포트와 결합(bind)시킨다.
             serverSocket = new ServerSocket(7777);
             System.out.println(getTime() + "서버가 준비되었습니다.");
         } catch (IOException e) {
@@ -21,30 +20,28 @@ public class TcpIpServer {
 
         while (true) {
             try {
-
                 System.out.println(getTime() + "연결 요청을 기다립니다.");
-                // 서버소켓은 클라이언트의 연결요청이 올 때까지 실행을 멈추고 기다린다.
-                // 클라이언트의 연결요청이 오면 클라이언트 소켓과 통신할 새로운 소켓을 생성한다.
+                //요청 대기시간을 5초로한다.
+                //5초동안 접속 요청이 없으면 SocketTimeoutException이 발생한다.
+                serverSocket.setSoTimeout(5 * 1000);
                 Socket socket = serverSocket.accept();
                 System.out.println(getTime() + socket.getInetAddress() + "로부터 연결 요청이 들어왔습니다.");
 
-                //소켓의 출력스트림을 얻는다.
                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+                dos.writeUTF("[NOTICE] Test Message3 from Server");
+                dos.writeUTF("Hello everyone!");
 
-                //원격 소켓(remote socket)에 데이터를 보낸다.
-                dos.writeUTF("[Notice] Test Message1 from Server.");
-                System.out.println(getTime() + "데이터를 전송했습니다.");
+                System.out.println(getTime() + "데이터 전송완료!!");
 
-                //스트림과 소켓을 닫아준다.
                 dos.close();
                 socket.close();
+
+            } catch (SocketTimeoutException e) {
+                System.out.println("지정된 시간동안 접속 요청이 없어서 서버를 종료합니다.");
+                System.exit(0);
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-    }
-
-    static String getTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("[hh:mm:ss]");
-        return sdf.format(new Date());
     }
 }
