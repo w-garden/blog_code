@@ -30,7 +30,7 @@ public class TcpIpServer5 {
         }
     }
 
-    private static class Sender extends Thread {
+    static class Sender extends Thread {
         Socket socket;
         DataOutputStream out;
         String name;
@@ -53,14 +53,14 @@ public class TcpIpServer5 {
             this.socket = socket;
             try {
                 out = new DataOutputStream(socket.getOutputStream());
-                name = "[" + socket.getInetAddress() + " : " + socket.getPort() + "]";
+                name = "[" + socket.getInetAddress() + " : " + socket.getPort() + "] ";
             } catch (IOException e) {
             }
 
         }
     }
 
-    private static class Receiver extends Thread {
+    static class Receiver extends Thread {
         Socket socket;
         DataInputStream in;
 
