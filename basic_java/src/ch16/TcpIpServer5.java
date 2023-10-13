@@ -8,26 +8,18 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class TcpIpServer5 {
-    public static void main(String[] args) {
-        ServerSocket serverSocket = null;
-        Socket socket = null;
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(7777);
+        Socket socket = serverSocket.accept();
 
-        try {
-            serverSocket = new ServerSocket(7777);
-            System.out.println("서버가 준비되었습니다.");
+        System.out.println("서버가 준비되었습니다.");
 
-            socket = serverSocket.accept();
+        Sender sender = new Sender(socket);
+        Receiver receiver = new Receiver(socket);
 
-            Sender sender = new Sender(socket);
-            Receiver receiver = new Receiver(socket);
+        sender.start();
+        receiver.start();
 
-            sender.start();
-            receiver.start();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     static class Sender extends Thread {
