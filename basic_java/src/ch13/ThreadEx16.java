@@ -1,6 +1,5 @@
 package ch13;
 
-import static java.lang.Thread.*;
 
 public class ThreadEx16 {
     public static void main(String[] args) {
