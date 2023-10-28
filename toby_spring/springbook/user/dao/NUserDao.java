@@ -8,7 +8,7 @@ public class NUserDao extends UserDao {
     @Override
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection c = DriverManager.getConnection("jdbc:mysql://localhost/spring", "spring", "spring");
+        Connection c = DriverManager.getConnection("jdbc:mysql:///localhost/spring", "spring", "spring");
         return c;
     }
 }
