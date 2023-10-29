@@ -11,11 +11,10 @@ public class UserDaoTest {
 
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        ConnectionMaker connectionMaker = new DConnectionMaker();
-        UserDao dao = new UserDao(connectionMaker);
+        UserDao dao = new DaoFactory().userDao();
 
         User user = new User();
-        user.setId("shc729");
+        user.setId("shc7299");
         user.setName("신호철");
         user.setPassword("1234");
 
