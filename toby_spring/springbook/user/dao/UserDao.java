@@ -29,7 +29,7 @@ public class UserDao {
 
 
 
-    public User get(String id) throws ClassNotFoundException, SQLException{
+    public User get(String id) throws ClassNotFoundException, SQLException {
         Connection c = connectionMaker.makeConnection();
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
@@ -45,6 +45,18 @@ public class UserDao {
         ps.close();
         c.close();
         return user;
+    }
+    public int delete(String id) throws ClassNotFoundException, SQLException {
+        Connection c= connectionMaker.makeConnection();
+        PreparedStatement ps =c.prepareStatement(
+                "delete from users where id = ?"
+        );
+        ps.setString(1, id);
+        int rows = ps.executeUpdate();
+        ps.close();
+        c.close();
+        return rows;
+
     }
 
 

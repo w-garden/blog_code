@@ -1,20 +1,23 @@
 package springbook.user.dao;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import springbook.user.dao.DaoFactory;
+import springbook.user.dao.UserDao;
 import springbook.user.domain.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class UserDaoTest {
 
-
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new DaoFactory().userDao();
+        ApplicationContext context =  new AnnotationConfigApplicationContext(DaoFactory.class);
+
+        UserDao dao = context.getBean("userDao", UserDao.class);
 
         User user = new User();
-        user.setId("shc7299");
+        user.setId("shc7149");
         user.setName("신호철");
         user.setPassword("1234");
 
@@ -29,7 +32,9 @@ public class UserDaoTest {
 
         System.out.println(user2.getId() + " 조회성공");
 
-
+        if(dao.delete(user2.getId())==1){
+            System.out.println("삭제성공!!!");
+        }
     }
 
 
