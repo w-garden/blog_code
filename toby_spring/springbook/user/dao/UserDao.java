@@ -2,23 +2,27 @@ package springbook.user.dao;
 
 import springbook.user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class UserDao {
 
-    private ConnectionMaker connectionMaker;
 
 
 
-
-
-    public void setConnectionMaker(ConnectionMaker connectionMaker){
-        this.connectionMaker=connectionMaker;
+    private DataSource dataSource;
+//    private ConnectionMaker connectionMaker;
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException{
-        Connection c = connectionMaker.makeConnection();
+//    public void setConnectionMaker(ConnectionMaker connectionMaker) {
+//        this.connectionMaker = connectionMaker;
+//    }
 
+    public void add(User user) throws ClassNotFoundException, SQLException {
+//        Connection c = connectionMaker.makeConnection();
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -32,9 +36,9 @@ public class UserDao {
     }
 
 
-
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+//        Connection c = connectionMaker.makeConnection();
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
         );
@@ -50,9 +54,11 @@ public class UserDao {
         c.close();
         return user;
     }
+
     public int delete(String id) throws ClassNotFoundException, SQLException {
-        Connection c= connectionMaker.makeConnection();
-        PreparedStatement ps =c.prepareStatement(
+//        Connection c = connectionMaker.makeConnection();
+        Connection c = dataSource.getConnection();
+        PreparedStatement ps = c.prepareStatement(
                 "delete from users where id = ?"
         );
         ps.setString(1, id);
