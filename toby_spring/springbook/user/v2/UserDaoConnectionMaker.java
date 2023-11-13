@@ -1,12 +1,15 @@
-package springbook.user.dao;
+package springbook.user.v2;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import springbook.user.v2.config.CountingDaoFactory;
 import springbook.user.domain.User;
+import springbook.user.connection.CountingConnectionMaker;
+import springbook.user.v2.dao.UserDao;
 
 import java.sql.SQLException;
 
 public class UserDaoConnectionMaker {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CountingDaoFactory.class);
         UserDao dao = context.getBean("userDao", UserDao.class);
 

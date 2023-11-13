@@ -1,27 +1,23 @@
-package springbook.user.dao;
+package springbook.user.v2.dao;
 
+import springbook.user.connection.ConnectionMaker;
 import springbook.user.domain.User;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDao {
 
-
-
-
     private DataSource dataSource;
-//    private ConnectionMaker connectionMaker;
     public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+        this.dataSource=dataSource;
     }
 
-//    public void setConnectionMaker(ConnectionMaker connectionMaker) {
-//        this.connectionMaker = connectionMaker;
-//    }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-//        Connection c = connectionMaker.makeConnection();
+    public void add(User user) throws SQLException {
         Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)");
@@ -36,8 +32,7 @@ public class UserDao {
     }
 
 
-    public User get(String id) throws ClassNotFoundException, SQLException {
-//        Connection c = connectionMaker.makeConnection();
+    public User get(String id) throws SQLException {
         Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
@@ -55,19 +50,18 @@ public class UserDao {
         return user;
     }
 
-    public int delete(String id) throws ClassNotFoundException, SQLException {
-//        Connection c = connectionMaker.makeConnection();
+    public int delete() throws SQLException {
         Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
-                "delete from users where id = ?"
+                "delete from users"
         );
-        ps.setString(1, id);
         int rows = ps.executeUpdate();
         ps.close();
         c.close();
         return rows;
 
     }
+
 
 
 }

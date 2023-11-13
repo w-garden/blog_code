@@ -1,8 +1,4 @@
-package springbook.user.dao;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+package springbook.user.v1.dao;
 
 public class DUserDao {
 //    @Override
