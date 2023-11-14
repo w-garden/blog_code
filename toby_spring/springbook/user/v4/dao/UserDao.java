@@ -1,23 +1,18 @@
-package springbook.user.v1.dao;
+package springbook.user.v4.dao;
 
-import springbook.user.connection.SimpleConnectionMaker;
 import springbook.user.domain.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.sql.DataSource;
+import java.sql.*;
 
 public class UserDao {
-
-    SimpleConnectionMaker simpleConnectionMaker;
-
-    public UserDao(SimpleConnectionMaker simpleConnectionMaker) {
-        this.simpleConnectionMaker = simpleConnectionMaker;
+    private DataSource dataSource;
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+    public void add(User user) throws SQLException {
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -31,8 +26,8 @@ public class UserDao {
     }
 
 
-    public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+    public User get(String id) throws SQLException {
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
         );
@@ -49,8 +44,8 @@ public class UserDao {
         return user;
     }
 
-    public int delete() throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+    public int delete() throws SQLException {
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "delete from users"
         );
@@ -60,5 +55,6 @@ public class UserDao {
         return rows;
 
     }
+
 
 }

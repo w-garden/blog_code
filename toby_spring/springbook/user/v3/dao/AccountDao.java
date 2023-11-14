@@ -1,4 +1,4 @@
-package springbook.user.v1.dao;
+package springbook.user.v3.dao;
 
 import springbook.user.connection.ConnectionMaker;
 

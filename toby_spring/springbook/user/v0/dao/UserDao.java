@@ -1,6 +1,5 @@
-package springbook.user.v1.dao;
+package springbook.user.v0.dao;
 
-import springbook.user.connection.SimpleConnectionMaker;
 import springbook.user.domain.User;
 
 import java.sql.Connection;
@@ -8,16 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDao {
+abstract class UserDao {
 
-    SimpleConnectionMaker simpleConnectionMaker;
-
-    public UserDao(SimpleConnectionMaker simpleConnectionMaker) {
-        this.simpleConnectionMaker = simpleConnectionMaker;
-    }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -32,7 +26,7 @@ public class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
         );
@@ -50,7 +44,7 @@ public class UserDao {
     }
 
     public int delete() throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement(
                 "delete from users"
         );
@@ -60,5 +54,6 @@ public class UserDao {
         return rows;
 
     }
+   public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
 }

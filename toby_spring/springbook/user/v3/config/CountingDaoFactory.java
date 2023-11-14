@@ -1,4 +1,4 @@
-package springbook.user.v2.config;
+package springbook.user.v3.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import springbook.user.connection.ConnectionMaker;
 import springbook.user.connection.CountingConnectionMaker;
 import springbook.user.connection.DConnectionMaker;
-import springbook.user.v2.dao.UserDao;
+import springbook.user.v3.dao.UserDao;
 
 import javax.sql.DataSource;
 

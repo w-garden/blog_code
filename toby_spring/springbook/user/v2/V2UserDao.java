@@ -1,20 +1,18 @@
 package springbook.user.v2;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import springbook.user.domain.User;
-import springbook.user.v2.config.DaoFactory;
+import springbook.user.connection.ConnectionMaker;
+import springbook.user.connection.DConnectionMaker;
 import springbook.user.v2.dao.UserDao;
+import springbook.user.domain.User;
 
 import java.sql.SQLException;
 
 
-public class UserDaoAnnotationConfig {
+public class V2UserDao {
 
-    public static void main(String[] args) throws SQLException {
-        ApplicationContext context =  new AnnotationConfigApplicationContext(DaoFactory.class);
-
-        UserDao dao = context.getBean("userDao", UserDao.class);
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        ConnectionMaker connectionMaker = new DConnectionMaker();
+        UserDao dao = new UserDao(connectionMaker);
         int deleteRows=dao.delete();
             System.out.println(deleteRows+" 개 데이터 삭제성공!!!");
 
@@ -23,7 +21,6 @@ public class UserDaoAnnotationConfig {
         user.setId("shc729");
         user.setName("신호철");
         user.setPassword("1234");
-
 
         dao.add(user);
 

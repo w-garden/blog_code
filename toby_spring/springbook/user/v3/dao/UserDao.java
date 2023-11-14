@@ -3,13 +3,18 @@ package springbook.user.v3.dao;
 import springbook.user.domain.User;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDao {
+
     private DataSource dataSource;
     public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+        this.dataSource=dataSource;
     }
+
 
     public void add(User user) throws SQLException {
         Connection c = dataSource.getConnection();
@@ -55,6 +60,7 @@ public class UserDao {
         return rows;
 
     }
+
 
 
 }
